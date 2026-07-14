@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home page</title>
+    </head>
+    <body>
+        <header>
+            <h1>Secret clubhouse</h1>
+            <p>login / signup to see what the fun is all about</p>
+        </header>
+        <main>
+            <div class="messagesContainer">
+                <%= messages.forEach((message) => { %>
+                    <div class="message">
+                        <p>anonymous</p>
+                        <p>Title: <%= message.title %></p>
+                        <p>Message: <%= message.message %></p>
+                    </div>
+                <% }) %>
+            </div>
+        </main>
+        <footer>
+            <a href="/signup">Signup</a>
+            <p>Already a user? <a href="/login">login</a> to enter</p>
+        </footer>
+    </body>
+</html>

@@ -12,7 +12,7 @@ app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUniniti
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.render("index"));
+app.get("/", (req, res) => res.render("homepage"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
