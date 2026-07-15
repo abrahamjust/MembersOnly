@@ -3,6 +3,7 @@ const path = require("node:path");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
+const router = require("./routers/router");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -12,9 +13,9 @@ app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUniniti
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.render("homepage"));
+app.get("/", router);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.SERVER_PORT || 3000;
 app.listen(PORT, (error) => {
     if (error) {
         throw error;
