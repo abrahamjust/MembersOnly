@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View page</title>
+        <title>View page (members)</title>
     </head>
     <body>
         <div class="messagesContainer">
             <%= messages.forEach((message) => { %>
                 <div class="message">
-                    <p>anonymous</p>
+                    <p>Author: <%= message.author %></p>
                     <p>Title: <%= message.title %></p>
                     <p>Message: <%= message.message %></p>
+                    <p>Date: <%= message.date %></p>
                 </div>
             <% }) %>
         </div>
