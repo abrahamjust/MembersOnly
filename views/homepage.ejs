@@ -11,10 +11,11 @@
             <p>login / signup to see what the fun is all about</p>
             <a href="/signup">Signup</a>
             <p>Already a user? <a href="/login">login</a> to enter</p>
+            <p>Want to join the club? <a href="/joinClub">Join</a> the club to get special privileges</p>
         </header>
         <main>
             <div class="messagesContainer">
-                <%= messages.forEach((message) => { %>
+                <% messages.forEach((message) => { %>
                     <div class="message">
                         <p>anonymous</p>
                         <p>Title: <%= message.title %></p>

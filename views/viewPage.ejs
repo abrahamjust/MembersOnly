@@ -7,20 +7,34 @@
     </head>
     <body>
         <div class="messagesContainer">
-            <%= messages.forEach((message) => { %>
+            <% messages.forEach((message) => { %>
                 <div class="message">
-                    <p>anonymous</p>
+                    <% if (user && user.role === "member") { %>
+                        <p><%= message.author %></p>
+                    <% } else { %>
+                        <p>Anonymous</p>
+                    <% } %>
                     <p>Title: <%= message.title %></p>
                     <p>Message: <%= message.message %></p>
+                    <p>Date: <%= message.date %></p>
+                    <% if (user && user.role == "admin") { %>
+                        <form action="/deleteMessage/<%= message.id %>" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             <% }) %>
         </div>
         <form action="/addMessage" method="post">
-            <label for="messageInput">Enter message</label>
+            <label for="title">Title: </label>
+            <input type="text" name="title">
+            <label for="messageInput">Enter message: </label>
             <textarea name="messageInput">
 
             </textarea>
             <button type="submit">Enter</button>
         </form>
+        <a href="/">Back to home</a>
+        <a href="/joinClub">Join the club for benefits</a>
     </body>
 </html>
