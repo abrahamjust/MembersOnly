@@ -9,10 +9,13 @@ async function homePage(req, res) {
 
 async function handleSignup(req, res) {
     const { name, email, password } = req.body;
-
+    let role = "user";
     try {
+        if (password == process.env.ADMIN_PASSWORD) {
+            role = "admin";
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
-        await db.createUser(email, name, hashedPassword);
+        await db.createUser(email, name, hashedPassword, role);
         res.redirect("/login");
     } catch (error) {
         console.error(error);
@@ -22,10 +25,6 @@ async function handleSignup(req, res) {
 
 async function viewPage(req, res) {
     const messages = await db.getAllMessages();
-
-    console.log(req.user);
-
-    console.log(messages);
     res.render("viewPage", {
         messages,
         user: req.user,
@@ -46,11 +45,25 @@ async function joinClub(req, res) {
 }
 
 async function addMessage(req, res) {
-
+    const { title, messageInput } = req.body;
+    await db.addMessage(title, messageInput, req.user.userid);
+    res.redirect("/view");
 }
 
 async function deleteMessage(req, res) {
-    
+    let messageId = req.params.messageid;
+    await db.deleteMessage(messageId);
+    res.redirect("/view");
+
+}
+
+function logout(req, res, next) {
+    req.logout((err) => {
+    if (err) {
+        return next(err);
+    }
+        res.redirect("/");
+    });
 }
 
 module.exports = {
@@ -59,5 +72,6 @@ module.exports = {
     deleteMessage,
     homePage,
     viewPage,
-    joinClub
+    joinClub,
+    logout
 }

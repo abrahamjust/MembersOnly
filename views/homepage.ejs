@@ -1,28 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home page</title>
-    </head>
-    <body>
-        <header>
-            <h1>Secret clubhouse</h1>
-            <p>login / signup to see what the fun is all about</p>
-            <a href="/signup">Signup</a>
-            <p>Already a user? <a href="/login">login</a> to enter</p>
-            <p>Want to join the club? <a href="/joinClub">Join</a> the club to get special privileges</p>
-        </header>
-        <main>
-            <div class="messagesContainer">
-                <% messages.forEach((message) => { %>
-                    <div class="message">
-                        <p>anonymous</p>
-                        <p>Title: <%= message.title %></p>
-                        <p>Message: <%= message.message %></p>
-                    </div>
-                <% }) %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Clubhouse</title>
+
+    <link rel="stylesheet" href="/homepage.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h1>Secret Clubhouse</h1>
+
+            <div class="nav-links">
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Login</a>
+                <a href="/joinClub">Join Club</a>
             </div>
-        </main>
-    </body>
+        </nav>
+
+        <div class="hero">
+            <h2>Welcome to the Secret Clubhouse</h2>
+
+            <p>
+                Read anonymous posts from members around the world.
+                Become a member to reveal who wrote each message.
+            </p>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="messagesSection">
+            <h2>Latest Messages</h2>
+
+            <div class="messagesContainer">
+
+                <% messages.forEach((message) => { %>
+
+                    <article class="messageCard">
+
+                        <h3><%= message.title %></h3>
+
+                        <p class="messageText">
+                            <%= message.message %>
+                        </p>
+
+                        <p class="author">
+                            Posted by <strong>Anonymous</strong>
+                        </p>
+
+                    </article>
+
+                <% }) %>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
 </html>

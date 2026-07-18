@@ -17,8 +17,8 @@ async function getAllMessages() {
     return rows;
 }
 
-async function createUser(username, name, password) {
-    await pool.query("INSERT INTO users (username, name, password) VALUES ($1, $2, $3)", [username, name, password]);
+async function createUser(username, name, password, role) {
+    await pool.query("INSERT INTO users (username, name, password, role) VALUES ($1, $2, $3, $4)", [username, name, password, role]);
 }
 
 async function getUser(username) {
@@ -36,10 +36,20 @@ async function updateRole(role, userid) {
     await pool.query("UPDATE users SET role = $1 WHERE userid = $2", [role, userid]);
 }
 
+async function addMessage(title, message, author_id) {
+    await pool.query("INSERT INTO messages (title, message, author_id) VALUES ($1, $2, $3)", [title, message, author_id]);
+}
+
+async function deleteMessage(messageId) {
+    await pool.query("DELETE FROM messages WHERE id = $1", [messageId]);
+}
+
 module.exports = {
     getAllMessages,
     createUser, 
     getUser,
     getUserById,
-    updateRole
+    updateRole,
+    addMessage, 
+    deleteMessage
 }

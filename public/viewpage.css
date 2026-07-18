@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+/* ---------- HEADER ---------- */
+
+header {
+    background: #1f2937;
+    color: white;
+    padding-bottom: 2rem;
+}
+
+.navbar {
+    width: min(1100px, 90%);
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5rem 0;
+}
+
+.navbar h1 {
+    font-size: 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+
+    padding: .6rem 1rem;
+    border-radius: 8px;
+
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,.15);
+}
+
+.welcome {
+    width: min(1100px, 90%);
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.welcome h2 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+
+.welcome p {
+    color: #d1d5db;
+}
+
+/* ---------- MAIN ---------- */
+
+main {
+    width: min(1100px, 90%);
+    margin: 3rem auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* ---------- CREATE MESSAGE ---------- */
+
+.newMessage {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.newMessage h2 {
+    margin-bottom: 1.5rem;
+}
+
+.newMessage form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.newMessage input,
+.newMessage textarea {
+    padding: .8rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.newMessage textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.newMessage button {
+    width: fit-content;
+
+    padding: .8rem 1.5rem;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.newMessage button:hover {
+    background: #1d4ed8;
+}
+
+/* ---------- MESSAGE GRID ---------- */
+
+.messagesSection h2 {
+    margin-bottom: 1.5rem;
+}
+
+.messagesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ---------- CARD ---------- */
+
+.messageCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.messageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.messageHeader h3 {
+    font-size: 1.2rem;
+}
+
+.date {
+    font-size: .85rem;
+    color: #6b7280;
+}
+
+.messageBody {
+    line-height: 1.6;
+}
+
+.author {
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* ---------- DELETE BUTTON ---------- */
+
+.deleteBtn {
+    margin-top: .5rem;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #dc2626;
+    color: white;
+
+    padding: .7rem 1rem;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.deleteBtn:hover {
+    background: #b91c1c;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .messageHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .5rem;
+    }
+
+}

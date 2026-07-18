@@ -1,40 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View page</title>
-    </head>
-    <body>
-        <div class="messagesContainer">
-            <% messages.forEach((message) => { %>
-                <div class="message">
-                    <% if (user && user.role === "member") { %>
-                        <p><%= message.author %></p>
-                    <% } else { %>
-                        <p>Anonymous</p>
-                    <% } %>
-                    <p>Title: <%= message.title %></p>
-                    <p>Message: <%= message.message %></p>
-                    <p>Date: <%= message.date %></p>
-                    <% if (user && user.role == "admin") { %>
-                        <form action="/deleteMessage/<%= message.id %>" method="post">
-                            <button type="submit">Delete</button>
-                        </form>
-                    <% } %>
-                </div>
-            <% }) %>
-        </div>
-        <form action="/addMessage" method="post">
-            <label for="title">Title: </label>
-            <input type="text" name="title">
-            <label for="messageInput">Enter message: </label>
-            <textarea name="messageInput">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Clubhouse</title>
 
-            </textarea>
-            <button type="submit">Enter</button>
-        </form>
-        <a href="/">Back to home</a>
-        <a href="/joinClub">Join the club for benefits</a>
-    </body>
+    <link rel="stylesheet" href="/viewpage.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h1>Secret Clubhouse</h1>
+
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/joinClub">Join Club</a>
+                <a href="/logout">Log out</a>
+            </div>
+        </nav>
+
+        <div class="welcome">
+            <h2>Welcome, <%= user.name %>!</h2>
+            <p>Share your thoughts with the Secret Clubhouse.</p>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="newMessage">
+
+            <h2>Create a Message</h2>
+
+            <form action="/addMessage" method="post">
+
+                <label for="title">Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                >
+
+                <label for="messageInput">Message</label>
+                <textarea
+                    id="messageInput"
+                    name="messageInput"
+                    rows="5"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Post Message
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="messagesSection">
+
+            <h2>Community Messages</h2>
+
+            <div class="messagesContainer">
+
+                <% messages.forEach((message) => { %>
+
+                    <article class="messageCard">
+
+                        <div class="messageHeader">
+
+                            <h3><%= message.title %></h3>
+
+                            <span class="date">
+                                <%= message.date.toDateString() %>
+                            </span>
+
+                        </div>
+
+                        <p class="messageBody">
+                            <%= message.message %>
+                        </p>
+
+                        <p class="author">
+                            <% if (user.role === "member" || user.role === "admin") { %>
+                                Posted by <strong><%= message.author %></strong>
+                            <% } else { %>
+                                Posted by <strong>Anonymous</strong>
+                            <% } %>
+                        </p>
+
+                        <% if (user.role === "admin") { %>
+
+                            <form
+                                action="/deleteMessage/<%= message.id %>"
+                                method="post"
+                            >
+                                <button class="deleteBtn">
+                                    Delete
+                                </button>
+                            </form>
+
+                        <% } %>
+
+                    </article>
+
+                <% }) %>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
 </html>

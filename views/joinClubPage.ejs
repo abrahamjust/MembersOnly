@@ -1,19 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Join club page</title>
-    </head>
-    <body>
-        <form action="/joinClub" method="post">
-            <label for="username">username:</label>
-            <input type="email" name="username">
-            <label for="code">
-                <h1>enter secret code</h1>
-            </label>
-            <input type="password" name="code">
-            <button type="submit">Submit</button>
-        </form>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Club</title>
+
+    <link rel="stylesheet" href="/joinClub.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h1>Secret Clubhouse</h1>
+
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="joinCard">
+
+            <h2>Become a Club Member</h2>
+
+            <p>
+                Have an invitation? Enter the username and secret club code
+                to unlock member privileges.
+            </p>
+
+            <form action="/joinClub" method="post">
+
+                <label for="username">Username (Email)</label>
+
+                <input
+                    type="email"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                    required
+                >
+
+                <label for="code">Secret Club Code</label>
+
+                <input
+                    type="password"
+                    id="code"
+                    name="code"
+                    placeholder="Enter secret code"
+                    required
+                >
+
+                <button type="submit">
+                    Join Club
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
 </html>

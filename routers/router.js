@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { handleSignup, addMessage, deleteMessage, homePage, viewPage, joinClub } = require("../controllers/controller");
+const { handleSignup, addMessage, deleteMessage, homePage, viewPage, joinClub, logout } = require("../controllers/controller");
 const passport = require("passport");
 
 const router = Router();
@@ -29,6 +29,8 @@ router.get("/view", viewPage);
 
 router.post("/addMessage", addMessage);
 
-router.get("/deleteMessage/:messageid", deleteMessage);
+router.post("/deleteMessage/:messageid", deleteMessage);
+
+router.get("/logout", logout);
 
 module.exports = router;
